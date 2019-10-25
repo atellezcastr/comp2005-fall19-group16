@@ -1,0 +1,59 @@
+import javax.swing.JPanel; 
+import javax.swing.JFrame;
+import java.awt.Graphics;
+import java.awt.Color; 
+import java.awt.BorderLayout;
+
+/**
+ * Stores objects of type block 
+ *
+ * @author (Naomi Ighodaro)
+ * @version (v1)
+ */
+public class BlockBank extends JPanel
+{
+    // instance variables 
+    private Block block = new Block(); 
+    private Graphics g = new Graphics();
+    /**
+     * Constructor for objects of class BlockBank
+     */
+    public BlockBank()
+    {
+        // initialise instance variables
+        super();
+        draw(g, Color.RED);
+    }
+
+    /**
+     * A method to set colour of and add blocks in panel
+     *
+     */
+    public void draw(Graphics g, Color color)
+    {
+      super.paintComponents(g);
+      g.setColor(color);
+      for(int i=0; i<21; i++){
+        for(int j=0; j<5; j++){
+      		g.drawLine(block.getBlocks()[i][j],block.getBlocks()[i][j][0]+1, block.getBlocks()[i][j][1]);
+        	g.drawLine(block.getBlocks()[i][j],block.getBlocks()[i][j][0], block.getBlocks()[i][j][1]-1);
+            g.drawLine(block.getBlocks()[i][j][0]+1,block.getBlocks()[i][j][1],block.getBlocks()[i][j][0]+1, block.getBlocks()[i][j][1]-1);
+            g.drawLine(block.getBlocks()[i][j][0],block.getBlocks()[i][j][1]-1,block.getBlocks()[i][j][0]+1, block.getBlocks()[i][j][1]-1);
+        }
+      }
+      super.paint(g);
+      g.setColor(color);
+    } 
+
+	public static void main(String args[]){
+      		BlockBank b1;
+    		JFrame f = new JFrame();
+    		f.setLayout(new BorderLayout());
+    		f.add(b1 = new BlockBank(), BorderLayout.WEST);
+
+    		b1.setVisible(true);
+
+    		f.pack();
+    		f.setVisible(true);
+        }
+ }
